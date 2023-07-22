@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import YouTube, { type YouTubeProps, type YouTubePlayer } from "react-youtube";
 import { MDXProvider } from "@mdx-js/react";
-import mdxComponents from "@/utils/mdx-components";
+import mdxComponents from "@/components/mdx-components";
 import { content } from "@/storage/demo-content";
 
 import {
@@ -44,8 +44,7 @@ export default function Home() {
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "390",
-    width: "640",
+    height: "0px",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -54,9 +53,19 @@ export default function Home() {
 
   return (
     <MDXProvider components={mdxComponents}>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="flex justify-between p-2 border-b-[1px]">
+        <h2 className="font-semibold">Course Name: JavaScript</h2>
+      </div>
+      <main className="flex justify-between h-[calc(100vh-41px)]">
         <YouTube
           videoId="rKSs2ZGlRjE"
+          iframeClassName="youtube-iframe"
+          style={{
+            position: "relative",
+            paddingTop: 25,
+            height: "100%",
+            width: "calc(100vw - 40vw)",
+          }}
           opts={opts}
           onReady={handlePlayerReady}
           onPlay={async (e) => {
@@ -70,9 +79,9 @@ export default function Home() {
             setCurrentVideoContent(pastTimeContent ?? "");
           }}
         />
-        <div>
-          <h1>Content area: {elapsed}</h1>
-          <div>{currentVideoContent}</div>
+
+        <div className="h-full overflow-auto w-2/5 p-4 border-l-[1px]">
+          {currentVideoContent}
         </div>
       </main>
     </MDXProvider>
