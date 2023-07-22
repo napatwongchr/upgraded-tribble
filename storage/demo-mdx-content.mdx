@@ -1,9 +1,44 @@
-MDX page
+MDX Elements
 
-# This is Heading
+# This is Heading 1
+
+## This is Heading 2
+
+### This is Heading 3
+
+#### This is Heading 4
 
 This is a list in markdown:
 
 - One
 - Two
 - Three
+
+This is a list in markdown:
+
+1. One
+2. Two
+3. Three
+
+There _are only three ways_ to make **this work.** <InlineCode>The first is to let</InlineCode> me take care of everything.
+The second is for you to take care of everything. The third is to split **_everything 50 / 50_**.
+I think the last option is the most preferable, but I'm certain it'll also mean the end of our marriage.
+
+> #### The quarterly results look great!
+>
+> - Revenue was off the chart.
+> - Profits were higher than ever.
+>
+>   _Everything_ is going according to **plan**.
+
+```
+  const GroceryItem: React.FC<GroceryItemProps> = ({ item }) => {
+    return (
+      <div>
+        <h2>{item.name}</h2>
+        <p>Price: {item.price}</p>
+        <p>Quantity: {item.quantity}</p>
+      </div>
+    );
+  }
+```

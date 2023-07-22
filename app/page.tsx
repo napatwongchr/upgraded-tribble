@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import YouTube, { YouTubeProps, YouTubePlayer } from "react-youtube";
+import YouTube, { type YouTubeProps, type YouTubePlayer } from "react-youtube";
+import { MDXProvider } from "@mdx-js/react";
+import mdxComponents from "@/utils/mdx-components";
 import { content } from "@/storage/demo-content";
+
 import {
   findPastTimeContent,
   convertCurrentTimeToElapsed,
@@ -50,26 +53,28 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <YouTube
-        videoId="rKSs2ZGlRjE"
-        opts={opts}
-        onReady={handlePlayerReady}
-        onPlay={async (e) => {
-          const currentTime = await e.target.getCurrentTime();
-          const videoTime = convertCurrentTimeToElapsed(currentTime)
-            .split(":")
-            .slice(0, 2)
-            .join(":");
+    <MDXProvider components={mdxComponents}>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <YouTube
+          videoId="rKSs2ZGlRjE"
+          opts={opts}
+          onReady={handlePlayerReady}
+          onPlay={async (e) => {
+            const currentTime = await e.target.getCurrentTime();
+            const videoTime = convertCurrentTimeToElapsed(currentTime)
+              .split(":")
+              .slice(0, 2)
+              .join(":");
 
-          const pastTimeContent = findPastTimeContent(content, videoTime);
-          setCurrentVideoContent(pastTimeContent ?? "");
-        }}
-      />
-      <div>
-        <h1>Content area: {elapsed}</h1>
-        <div>{currentVideoContent}</div>
-      </div>
-    </main>
+            const pastTimeContent = findPastTimeContent(content, videoTime);
+            setCurrentVideoContent(pastTimeContent ?? "");
+          }}
+        />
+        <div>
+          <h1>Content area: {elapsed}</h1>
+          <div>{currentVideoContent}</div>
+        </div>
+      </main>
+    </MDXProvider>
   );
 }
