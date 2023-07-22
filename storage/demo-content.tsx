@@ -1,11 +1,9 @@
-export const content: { [key: string]: string } = {
-  "00:00": `
-    <h1>Content at 00:00</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-      Ut accusantium rerum dicta inventore quisquam perferendis cupiditate fugiat
-      excepturi modi libero ullam eligendi quos tempora maiores, placeat provident saepe, temporibus itaque!
-    </p>
-  `,
+import DemoMDXContent from "./demo-mdx-content.mdx";
+
+export type Content = { [key: string]: string | React.JSX.Element };
+
+export const content: Content = {
+  "00:00": <DemoMDXContent />,
   "00:10": `
     <h1>Content at 00:10</h1>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.

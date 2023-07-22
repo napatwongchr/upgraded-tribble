@@ -1,5 +1,6 @@
+import { Content } from "@/storage/demo-content";
 export const findPastTimeContent = (
-  contentObj: { [key: string]: string },
+  contentObj: Content,
   currentTime: string
 ) => {
   const sortedTimes = Object.keys(contentObj).sort();

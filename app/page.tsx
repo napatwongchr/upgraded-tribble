@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useRef, useEffect } from "react";
 import YouTube, { YouTubeProps, YouTubePlayer } from "react-youtube";
 import { content } from "@/storage/demo-content";
@@ -8,7 +9,9 @@ import {
 } from "@/utils/video";
 
 export default function Home() {
-  const [currentVideoContent, setCurrentVideoContent] = useState<string>("");
+  const [currentVideoContent, setCurrentVideoContent] = useState<
+    string | React.JSX.Element
+  >("");
   const [elapsed, setElapsed] = useState<string>("");
   const playerRef = useRef<YouTubePlayer | null>(null);
 
